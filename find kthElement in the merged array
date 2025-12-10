@@ -1,0 +1,38 @@
+class Solution {
+    public int kthElement(int a[], int b[], int k) {
+        // code here
+        int i = 0, j = 0;
+        int n = a.length, m = b.length;
+        
+        ArrayList<Integer> arr = new ArrayList<>();
+        
+        while(i < n && j < m){
+            if(a[i] < b[j]){
+                arr.add(a[i]);
+                i++;
+            }else if(a[i] > b[j]){
+                arr.add(b[j]);
+                j++;
+            }else{
+                arr.add(a[i]);
+                i++;
+            }
+        }
+        
+        while(i < n){
+            arr.add(a[i]);
+            i++;
+        }
+        
+        while(j < m){
+            arr.add(b[j]);
+            j++;
+        }
+        
+        if(k <= arr.size()){
+            return arr.get(k-1);
+        }
+        
+        return 0;
+    }
+}
