@@ -1,0 +1,50 @@
+class Solution {
+    public static ArrayList<Integer> findUnion(int[] a, int[] b) {
+        // code here        
+        Arrays.sort(a);
+        Arrays.sort(b);
+
+        ArrayList<Integer> unionArr = new ArrayList<>();
+        int i = 0, j = 0;
+        
+        while(i < a.length && j < b.length){
+            
+            int lastValue = unionArr.isEmpty()? Integer.MIN_VALUE: unionArr.get(unionArr.size()-1);
+
+            if (a[i] < b[j]) {
+                if (unionArr.isEmpty() || lastValue != a[i]) {
+                    unionArr.add(a[i]);
+                }
+                i++;
+            } else if (a[i] > b[j]) {
+                if (unionArr.isEmpty() || lastValue != b[j]) {
+                    unionArr.add(b[j]);
+                }
+                j++;
+            } else {
+                if (unionArr.isEmpty() || lastValue != a[i]) {
+                    unionArr.add(a[i]);
+                }
+                i++;
+                j++;
+            }
+        }
+        
+        while(i < a.length){
+            if(unionArr.isEmpty() || unionArr.get(unionArr.size()-1) != a[i]){
+                unionArr.add(a[i]);
+            }
+            i++;
+        }
+        
+        while(j < b.length){
+            if(unionArr.isEmpty() || unionArr.get(unionArr.size()-1) != b[j]){
+                unionArr.add(b[j]);
+            }
+            j++;
+        }
+
+        return unionArr;
+
+    }
+}
