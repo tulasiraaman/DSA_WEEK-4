@@ -18,3 +18,44 @@ class Solution {
         return false;
     }
 }//TC - O(N^2), SC - O(N^2)
+
+
+class Solution {
+    public boolean hasTripletSum(int arr[], int target) {
+        // code Here
+        int n = arr.length;
+
+        //TIME LIMIT EXCEEDS
+        // for(int i = 0;i < n-2;i++){ 
+        //     Set<Integer> seen = new HashSet<>();
+        //     int currTarget = target - arr[i];
+            
+        //     for(int j = i+1;j < n;j++){
+        //         int complement = currTarget - arr[j];
+        //         if (seen.contains(complement)) {
+        //             return true;
+        //         }
+        //         seen.add(arr[j]);
+        //     }
+        // }
+        
+        
+        Arrays.sort(arr);
+        
+        for(int i = 0;i < n-2;i++){
+            int start = i + 1, end = n-1;
+            while(start < end){
+                int currentSum = arr[i] + arr[start] + arr[end];
+                if(target == currentSum){
+                    return true;
+                }else if(currentSum > target){
+                    end--;
+                }else{
+                    start++;
+                }
+            }
+        }
+        
+        return false;
+    }
+}//TC - O(N^2), SC - O(N^2)
