@@ -1,0 +1,23 @@
+public int[] selectionSort(int[] arr){
+        int n = arr.length;
+        for (int i = 0; i < n - 1; i++) {
+            int smallNum = i;
+
+            for (int j = i+1; j < n; j++) {
+                if(arr[j] < arr[smallNum]){
+                    smallNum = j;
+                }
+            }
+
+            int temp = arr[i];
+            arr[i] = arr[smallNum];
+            arr[smallNum] = temp;
+        }
+
+        //Find small element and swap it to the current element
+        //TC - O(N^2) Even in the Best case
+        for (int i: arr){
+            System.out.print(i+" ");
+        }
+        return arr;
+    }
