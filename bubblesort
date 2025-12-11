@@ -1,19 +1,19 @@
 public void bubbleSort(int[] num) {
         int n = num.length;
-        for (int i = 0; i < n; i++) {
-            boolean isSwaped = false; //prevent unwanted loop
-            
-            for (int j = 1; j < n; j++) {
+        for (int i = 0; i < n-1; i++) { // outer loop runs n-1 times
+            boolean isSwapped = false; //prevents unwanted loop
+
+            for (int j = 1; j < n-i; j++) { // inner loop shrinks each time
                 if(num[j-1] > num[j]){
                     int temp = num[j-1];
                     num[j-1] = num[j];
                     num[j] = temp;
-                    isSwaped = true;
+                    isSwapped = true;
                 }
             }
-            if(!isSwaped) break;
+            if(!isSwapped) break; // stop early if already sorted
         }
         for (int i: num){
-            System.out.print(i+" ");
+            System.out.print(i+" "); // TC - O(N^2) in worst case
         }
     }
